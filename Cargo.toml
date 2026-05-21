@@ -51,8 +51,8 @@ vmm-sys-util = { workspace = true }
 zbus = { version = "4.4.0", optional = true }
 
 [patch.crates-io]
-kvm-bindings = { git = "https://github.com/mathias-arm/kvm", package="kvm-bindings", branch = "cca/v7" }
-kvm-ioctls = { git = "https://github.com/mathias-arm/kvm", package="kvm-ioctls", branch = "cca/v7" }
+kvm-bindings = { path = "kvm-fork/kvm-bindings" }
+kvm-ioctls = { path = "kvm-fork/kvm-ioctls" }
 
 [patch."https://github.com/rust-vmm/vfio"]
 vfio-bindings = { git = "https://github.com/mathias-arm/vfio", branch = "cca/v7" }

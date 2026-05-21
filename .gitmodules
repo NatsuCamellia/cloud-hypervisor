@@ -1,0 +1,4 @@
+[submodule "kvm-fork"]
+	path = kvm-fork
+	url = git@github.com:NatsuCamellia/kvm-fork.git
+	branch = cca/v7

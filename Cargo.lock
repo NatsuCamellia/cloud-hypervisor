@@ -1104,7 +1104,6 @@ dependencies = [
 [[package]]
 name = "kvm-bindings"
 version = "0.11.1"
-source = "git+https://github.com/mathias-arm/kvm?branch=cca/v7#43496534f2f0195ad675bc875e6f73988091f3d2"
 dependencies = [
  "serde",
  "vmm-sys-util",
@@ -1114,7 +1113,6 @@ dependencies = [
 [[package]]
 name = "kvm-ioctls"
 version = "0.21.0"
-source = "git+https://github.com/mathias-arm/kvm?branch=cca/v7#43496534f2f0195ad675bc875e6f73988091f3d2"
 dependencies = [
  "bitflags 2.6.0",
  "kvm-bindings",
