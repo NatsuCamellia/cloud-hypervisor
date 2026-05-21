@@ -2099,8 +2099,22 @@ impl DeviceManager {
             },
         );
 
+        // Realm guests must access emulated MMIO via the unprotected (shared)
+        // half of the IPA space; the protected half would fault at stage-2.
+        // The shared bit sits at IPA_width - 1, matching the IPA size KVM uses
+        // when creating the Realm VM (see hypervisor/src/kvm/mod.rs).
+        #[cfg(feature = "arm_rme")]
+        let guest_addr = if self.config.lock().unwrap().is_arm_rme_enabled() {
+            // hardcoded for now
+            addr.0 | (1u64 << 47)
+        } else {
+            addr.0
+        };
+        #[cfg(not(feature = "arm_rme"))]
+        let guest_addr = addr.0;
+
         self.cmdline_additions
-            .push(format!("earlycon=pl011,mmio,0x{:08x}", addr.0));
+            .push(format!("earlycon=pl011,mmio,0x{:08x}", guest_addr));
 
         // Fill the device tree with a new node. In case of restore, we
         // know there is nothing to do, so we can simply override the
